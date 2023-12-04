@@ -1,8 +1,10 @@
+const UserModel = require("../Models/UserModel");
 const User = require("../Models/UserModel");
 const { createSecretToken } = require("../util/SecretToken");
 const bcrypt = require("bcryptjs");
-const userVerification = ('../Middlewares/AuthMiddleware.js')
-
+const jwt = require('jsonwebtoken')
+const nodemailer= require('nodemailer');
+const sendMail = require("../util/sendMail");
 module.exports.Signup = async (req, res, next) => {
   try {
     const { email, password, username, createdAt } = req.body;
@@ -50,18 +52,24 @@ module.exports.Login = async (req, res, next) => {
     console.error(error);
   }
 }
-module.exports.userVerification = (req, res) => {
-  const token = req.cookies.token
-  if (!token) {
-    return res.json({ status: false })
-  }
-  jwt.verify(token, process.env.TOKEN_KEY, async (err, data) => {
-    if (err) {
-     return res.json({ status: false })
-    } else {
-      const user = await User.findById(data.id)
-      if (user) return res.json({ status: true, user: user.username })
-      else return res.json({ status: false })
+
+
+module.exports.ForgotPassword = async(req,res,next)=>{
+  const {email} = req.body
+  UserModel.findOne({email})
+  .then(user =>{
+    if(!user){
+      return res.send({Status:"User doesnot exist"})
     }
+    const token=jwt.sign({id:user._id},"jwt_secret_key",{expiresIn:"1d"})
+   try {
+    sendMail({
+  email:email,
+  subject:'Forgot Password',
+  message:'Forgot Password'
+    })
+   } catch (error) {
+    
+   }
   })
 }
