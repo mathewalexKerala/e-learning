@@ -4,7 +4,8 @@ const { createSecretToken } = require("../util/SecretToken");
 const bcrypt = require("bcryptjs");
 const jwt = require('jsonwebtoken')
 const nodemailer= require('nodemailer');
-const sendMail = require("../util/sendMail");
+require('dotenv').config()
+const {SMTP_PASSWORD} = process.env
 module.exports.Signup = async (req, res, next) => {
   try {
     const { email, password, username, createdAt } = req.body;
@@ -55,21 +56,60 @@ module.exports.Login = async (req, res, next) => {
 
 
 module.exports.ForgotPassword = async(req,res,next)=>{
+  console.log('this is is forgot password')
   const {email} = req.body
+  
   UserModel.findOne({email})
   .then(user =>{
+
     if(!user){
       return res.send({Status:"User doesnot exist"})
     }
+   console.log('this is the user inside then',user)
     const token=jwt.sign({id:user._id},"jwt_secret_key",{expiresIn:"1d"})
-   try {
-    sendMail({
-  email:email,
-  subject:'Forgot Password',
-  message:'Forgot Password'
-    })
-   } catch (error) {
+
+    var transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'mathewalex557@gmail.com',
+        pass: SMTP_PASSWORD
+      }
+    });
     
-   }
-  })
+    var mailOptions = {
+      from: 'mathewalex557@gmail.com',
+      to: 'mathewalex557@gmail.com',
+      subject: 'Reset your password',
+      text: `http://localhost:3000/reset-password/${user._id}/${token}`
+    };
+    
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+      } else {
+        return res.send({Status:"Success"})
+      }
+    });
+     })
+}
+
+module.exports.ResetPassword = async(req,res)=>{
+  const {id,token}=req.params
+  const {password} = req.body
+
+  jwt.verify(token,"jwt_secret_key",(err,decoded)=>{
+    if(err){
+      return res.json({Status:"Error with token"})
+    }else{
+      bcrypt.hash(password,10)
+      .then(hash=> {
+        UserModel.findByIdAndUpdate({_id:id},{password:hash})
+        .then(u=>res.send({Status:"Successfully updated password"}))
+      })
+      .catch(err => res.send({Status:err}))
+  }
+
+})
+
+
 }
