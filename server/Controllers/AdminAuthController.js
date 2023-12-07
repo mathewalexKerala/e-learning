@@ -1,5 +1,5 @@
-const UserModel = require("../Models/UserModel");
-const User = require("../Models/UserModel");
+const adminModel = require("../Models/adminModel");
+const Admin = require("../Models/adminModel");
 const { createSecretToken } = require("../util/SecretToken");
 const bcrypt = require("bcryptjs");
 const jwt = require('jsonwebtoken')
@@ -9,20 +9,20 @@ const {SMTP_PASSWORD} = process.env
 module.exports.Signup = async (req, res, next) => {
   try {
     const { email, password, username, createdAt } = req.body;
-    const existingUser = await User.findOne({ email });
+    const existingUser = await Admin.findOne({ email });
     console.log('ddd',email, password, username, createdAt ,existingUser)
     if (existingUser) {
       return res.json({ message: "User already exists" });
     }
-    const user = await User.create({ email, password, username, createdAt });
-    const token = createSecretToken(user._id);
+    const admin = await Admin.create({ email, password, username, createdAt });
+    const token = createSecretToken(admin._id);
     res.cookie("token", token, {
       withCredentials: true,
       httpOnly: false,
     });
     res
       .status(201)
-      .json({ message: "User signed in successfully", success: true, user });
+      .json({ message: "User signed in successfully", success: true, admin});
     next();
   } catch (error) {
     console.error(error);
@@ -34,15 +34,15 @@ module.exports.Login = async (req, res, next) => {
     if(!email || !password ){
       return res.json({message:'All fields are required'})
     }
-    const user = await User.findOne({ email });
-    if(!user){
+    const admin = await Admin.findOne({ email });
+    if(!admin){
       return res.json({message:'Incorrect password or email' }) 
     }
-    const auth = await bcrypt.compare(password,user.password)
+    const auth = await bcrypt.compare(password,admin.password)
     if (!auth) {
       return res.json({message:'Incorrect password or email' }) 
     }
-     const token = createSecretToken(user._id);
+     const token = createSecretToken(admin._id);
      res.cookie("token", token, {
        withCredentials: true,
        httpOnly: false,
@@ -60,14 +60,14 @@ module.exports.ForgotPassword = async(req,res,next)=>{
   const {email} = req.body
   console.log('this is email',email)
   
-  UserModel.findOne({email})
-  .then(user =>{
+ adminModel.findOne({email})
+  .then(admin =>{
 
-    if(!user){
+    if(!admin){
       return res.send({Status:"User doesnot exist"})
     }
    
-    const token=jwt.sign({id:user._id},"jwt_secret_key",{expiresIn:"1d"})
+    const token=jwt.sign({id:admin._id},"jwt_secret_key",{expiresIn:"1d"})
 
     var transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -81,7 +81,7 @@ module.exports.ForgotPassword = async(req,res,next)=>{
       from: 'mathewalex557@gmail.com',
       to: email,
       subject: 'Reset your password',
-      text: `http://localhost:3000/reset-password/${user._id}/${token}`
+      text: `http://localhost:3000/admin/reset-password/${user._id}/${token}`
     };
     
     transporter.sendMail(mailOptions, function(error, info){

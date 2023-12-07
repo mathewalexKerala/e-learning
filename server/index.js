@@ -2,16 +2,15 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors=require('cors')
 const authRoute = require("./Routes/AuthRoute");
+const adminRoute = require('./Routes/adminRoute')
+const tutorRoute = require('./Routes/tutorRoute')
 
 const app = express()
 require('dotenv').config()
 const {MONGO_URL,PORT}=process.env
 
 mongoose
-  .connect(MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(MONGO_URL)
   .then(() => console.log("MongoDB is  connected successfully"))
   .catch((err) => console.error(err));
 
@@ -30,4 +29,6 @@ app.use(
 app.use(express.json())
 
 app.use('/',authRoute)
+app.use('/admin',adminRoute)
+app.use('/tutor',tutorRoute)
 

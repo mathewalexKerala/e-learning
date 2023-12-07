@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
-const ResetPassword = () =>{
+const TutorResetPassword = () =>{
   const navigate = useNavigate();
   const [password, setPassword] = useState('');
   const {id,token} = useParams()
@@ -25,7 +25,7 @@ const ResetPassword = () =>{
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        `http://localhost:4000/reset-password/${id}/${token}`,
+        `http://localhost:4000/tutor/reset-password/${id}/${token}`,
         {
           password
         },
@@ -36,7 +36,7 @@ const ResetPassword = () =>{
         if(res.data.Status === 'Successfully updated password'){
           handleSuccess(`able to change the password`);
           setTimeout(() => {
-            navigate("/login");
+            navigate("/tutor/login");
           }, 1000);
         }else {
           handleError(`couldn't change the password`);
@@ -81,4 +81,4 @@ const ResetPassword = () =>{
 };
 
 
-export default ResetPassword;
+export default TutorResetPassword;

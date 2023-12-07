@@ -1,0 +1,20 @@
+.mid-outer{
+    height:400px;
+    width:100%;
+    background-color: rgb(247, 220, 220);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+.mid_description{
+    font-size: 25px;
+    position: relative;
+    top: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.mid_description_paragraph{
+    position: relative;
+    top: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}

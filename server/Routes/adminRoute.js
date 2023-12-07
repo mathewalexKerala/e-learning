@@ -1,4 +1,4 @@
-const { Signup ,Login,ForgotPassword,ResetPassword} = require("../Controllers/AuthController");
+const { Signup ,Login,ForgotPassword,ResetPassword} = require("../Controllers/AdminAuthController.js");
 const {userVerification} = require('../Middlewares/AuthMiddleware')
 const router = require("express").Router();
 
