@@ -7,7 +7,7 @@ const tutorSchema = new mongoose.Schema({
     required: [true, "Your email address is required"],
     unique: true,
   },
-  tutorname: {
+  username: {
     type: String,
     required: [true, "Your username is required"],
   },

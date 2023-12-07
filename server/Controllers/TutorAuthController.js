@@ -9,12 +9,14 @@ const {SMTP_PASSWORD} = process.env
 module.exports.Signup = async (req, res, next) => {
   try {
     const { email, password, username, createdAt } = req.body;
+    console.log(email,password,username,createdAt)
     const existingTutor = await Tutor.findOne({ email });
-  
+  console.log('existing',existingTutor)
     if (existingTutor) {
       return res.json({ message: "User already exists" });
     }
     const tutor = await Tutor.create({ email, password, username, createdAt });
+    console.log('tutor',tutor)
     const token = createSecretToken(tutor._id);
     res.cookie("token", token, {
       withCredentials: true,
