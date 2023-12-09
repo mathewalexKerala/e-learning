@@ -42,7 +42,7 @@ const AdminSignUp = () => {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          navigate("/");
+          navigate("/admin");
         }, 1000);
       } else {
         handleError(message);

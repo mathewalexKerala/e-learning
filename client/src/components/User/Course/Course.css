@@ -2,3 +2,87 @@
     height:600px;
        background-color: black;
 }
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+label {
+  font-size: 1.2rem;
+  color: #656262;
+}
+
+html,
+body {
+  
+  height: 100%;
+  width: 100%;
+  
+}
+
+body {
+ 
+  background-color:white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.form_container1 {
+  background-color: #fff;
+  padding: 2rem 3rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+  
+}
+
+.form_container1 > h2 {
+  margin-block: 1rem;
+  padding-block: 0.6rem;
+  color: rgba(0, 212, 255, 1);
+}
+
+.form_container1 > form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.form_container1 div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.form_container1 input {
+  border: none;
+  padding: 0.5rem;
+  border-bottom: 1px solid gray;
+  font-size: 1.1rem;
+  outline: none;
+}
+
+.form_container1 input::placeholder {
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+
+
+span a {
+  text-decoration: none;
+  color: rgba(0, 212, 255, 1);
+}
+
+.first_image_section{
+    height: 200px;
+    width: 100%;
+    background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20230715/pngtree-d-illustration-of-laptop-computer-placed-on-a-black-shelf-background-image_3887227.jpg');
+}
+.course-section{
+    display: flex;
+    justify-content: space-evenly;
+}

@@ -81,7 +81,7 @@ module.exports.ForgotPassword = async(req,res,next)=>{
       from: 'mathewalex557@gmail.com',
       to: email,
       subject: 'Reset your password',
-      text: `http://localhost:3000/admin/reset-password/${user._id}/${token}`
+      text: `http://localhost:3000/admin/reset-password/${admin._id}/${token}`
     };
     
     transporter.sendMail(mailOptions, function(error, info){
@@ -105,7 +105,7 @@ module.exports.ResetPassword = async(req,res)=>{
     }else{
       bcrypt.hash(password,10)
       .then(hash=> {
-        UserModel.findByIdAndUpdate({_id:id},{password:hash})
+        adminModel.findByIdAndUpdate({_id:id},{password:hash})
         .then(u=>res.send({Status:"Successfully updated password"}))
       })
       .catch(err => res.send({Status:err}))

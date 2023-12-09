@@ -1,18 +1,20 @@
-import { useEffect, useState } from "react";
+import React, { useState } from 'react';
+import './LoginHeader.css'
+import imgLogo from '../Images/WhatsApp Image 2023-10-29 at 12.23.05 AM.jpeg'
+import { Avatar, AvatarBadge, AvatarGroup } from '@chakra-ui/react'
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import Header from "../components/User/header/Header";
-import Hero from "../components/User/Hero/Hero";
-import Mid from "../components/User/Mid-level/Mid";
-import Footer from "../components/User/Footer/Footer";
-import Course from "../components/User/Course/Course";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 
-const Home = () => {
 
-  
+
+const LoginHeader = () => {
+
+  const { isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
   const [cookies, removeCookie] = useCookies([]);
   const [username, setUsername] = useState("");
@@ -42,27 +44,33 @@ const Home = () => {
     };
     verifyCookie();
   }, [cookies, navigate, removeCookie]);
-  const Logout = () => {
-    removeCookie("token");
-    navigate("/signup");
-  };
+  const Login = () => {
+    
+    navigate("/login");
+  }
+  
   return (
-    <>
-      <Header />
-      <Hero/>
-      <Mid/>
-      <Course/>
-      <Footer/>
-      {/* <div className="home_page">
-        <h4>
-          
-          Welcome <span>{username}</span>
-        </h4>
-        <button onClick={Logout}>LOGOUT</button>
-      </div> */}
-      <ToastContainer />
-    </>
-  );
-};
+    <header>
+      <nav>
+        <div className='container'>
+          <h2 style={{color:'white'}}>E-learning</h2>
+        <div className='search-bar'>
+         <input  type='text'/>
+        </div>
+        <div className='button'>
+          <p className='link'>Home</p>
+          <p className='link'>courses</p>
+          {/* <p className='link'>Login</p> */}
+         <button  onClick={Login} className='signup btn'>Login</button>
+   
+    {/* <Avatar onClick={Logout} name='Mathew Alex' src={imgLogo} /> */}
+  
+        </div>
+        </div>
+      </nav>
+    </header>
 
-export default Home;
+  );
+}
+
+export default LoginHeader;

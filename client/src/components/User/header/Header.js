@@ -8,9 +8,17 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
+import { Search2Icon} from '@chakra-ui/icons'
+
+
+
+
+
 const Header = () => {
 
- 
+
+
+  
   const navigate = useNavigate();
   const [cookies, removeCookie] = useCookies([]);
   const [username, setUsername] = useState("");
@@ -51,15 +59,18 @@ const Header = () => {
         <div className='container'>
           <h2 style={{color:'white'}}>E-learning</h2>
         <div className='search-bar'>
+        
+  <Search2Icon />
          <input  type='text'/>
+
         </div>
         <div className='button'>
           <p className='link'>Home</p>
           <p className='link'>courses</p>
-          <p className='link'>Login</p>
-          <button className='signup btn'>Signup</button>
+          {/* <p className='link'>Login</p> */}
+         <button  onClick={Logout} className='signup btn'>Logout</button>
    
-    <Avatar onClick={Logout} name='Mathew Alex' src={imgLogo} />
+    {/* <Avatar onClick={Logout} name='Mathew Alex' src={imgLogo} /> */}
   
         </div>
         </div>

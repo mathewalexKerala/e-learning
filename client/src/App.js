@@ -16,7 +16,13 @@ import TutorResetPassword from "./tutorPages/TutorResetPassword.jsx";
 import Home from "./pages/Home";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
-import { ChakraProvider } from '@chakra-ui/react'
+
+
+
+
+
+
+
 function App() {
   return (
     <div className="App">

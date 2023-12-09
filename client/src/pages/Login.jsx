@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 const Login = () => {
+
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({
     email: "",
@@ -85,7 +87,7 @@ const Login = () => {
         
         <Link to="/forgot-password">forgot password?</Link>
       
-        <button type="submit">Submit</button>
+        <button  type="submit">Submit</button>
         <span>
           Already have an account? <Link to={"/signup"}>Signup</Link>
         </span>

@@ -13,7 +13,7 @@ label {
 
 html,
 body {
-  margin-top: 10px;
+  
   height: 100%;
   width: 100%;
   
@@ -33,6 +33,7 @@ body {
   max-width: 400px;
   box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
   margin-left: 40%;
+  margin-top: 50px;
 }
 
 .form_container > h2 {

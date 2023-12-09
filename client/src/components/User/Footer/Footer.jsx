@@ -2,13 +2,15 @@ import React from 'react';
 import instaLogo from '../Images/pngtree-instagram-black-amp.png'
 import twitterLogo from '../Images/twitter.png'
 import whatsappLogo from '../Images/whatsapp.png'
+
 import './Footer.css'
 const Footer = () => {
+   
     return (
         <>
             <div className='course_outer_div'>
                 <div className='course_first_section'>
-                    <div className='first_section'>
+                    <div className='first1_section'>
                         <span className='first_section_title'>Company</span>
                         <span className='first_section_subtitle'>About Us</span>
                         <span className='first_section_subtitle'>Customers</span>

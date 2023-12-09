@@ -1,0 +1,24 @@
+header{
+    height: 80px;
+    background-color: #180B67;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+header h1{
+    color: aliceblue;
+    font-size: 30px;
+    margin-left: 40px;
+}
+.header_last_section{
+    display: flex;
+    justify-content: space-between;
+}
+
+.header_last_section h1{
+    margin-right: 200px;
+}
+.header_last_section Button{
+    margin-right:100px;
+}
