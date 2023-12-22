@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Header.css'
-import imgLogo from '../Images/WhatsApp Image 2023-10-29 at 12.23.05 AM.jpeg'
+// import imgLogo from '../Images/WhatsApp Image 2023-10-29 at 12.23.05 AM.jpeg'
 import { Avatar, AvatarBadge, AvatarGroup } from '@chakra-ui/react'
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";

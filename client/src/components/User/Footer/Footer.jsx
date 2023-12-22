@@ -1,7 +1,7 @@
 import React from 'react';
-import instaLogo from '../Images/pngtree-instagram-black-amp.png'
-import twitterLogo from '../Images/twitter.png'
-import whatsappLogo from '../Images/whatsapp.png'
+// import instaLogo from '../Images/pngtree-instagram-black-amp.png'
+// import twitterLogo from '../Images/twitter.png'
+// import whatsappLogo from '../Images/whatsapp.png'
 
 import './Footer.css'
 const Footer = () => {
@@ -33,9 +33,9 @@ const Footer = () => {
                     </div>
                     <div className='last_section'>
                         <h1 className='last_section_title'>Follow us on</h1>
-                        <img className='last_section_subtitle' style={{ height: '50px', width: '50px', position: 'relative', top: '5px' }} src={instaLogo} />
-                        <img className='last_section_subtitle' style={{ height: '40px', width: '40px' }} src={twitterLogo} />
-                        <img className='last_section_subtitle' style={{ height: '40px', width: '40px' }} src={whatsappLogo} />
+                        {/* <img className='last_section_subtitle' style={{ height: '50px', width: '50px', position: 'relative', top: '5px' }} src={} /> */}
+                        {/* <img className='last_section_subtitle' style={{ height: '40px', width: '40px' }} src={twitterLogo} />
+                        <img className='last_section_subtitle' style={{ height: '40px', width: '40px' }} src={whatsappLogo} /> */}
                     </div>
                 </div>
             </div>
